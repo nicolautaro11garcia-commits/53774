@@ -1,0 +1,77 @@
+grammar MiLenguaje;
+
+programa
+    : instruccion+ EOF
+    ;
+
+instruccion
+    : variar
+    | asignacion
+    | salida
+    ;
+
+variar
+    : 'variar' variable 'desde' expresion 'hasta' expresion
+      ('con paso' expresion)?
+      'hacer' bloque 'fin_variar'
+    ;
+
+bloque
+    : instruccion*
+    ;
+
+asignacion
+    : variable '<-' expresion
+    ;
+
+salida
+    : 'escribir' expresion
+    ;
+
+expresion
+    : termino (OPADD termino)*
+    ;
+
+termino
+    : factor (OPMUL factor)*
+    ;
+
+factor
+    : numero
+    | variable
+    | '(' expresion ')'
+    ;
+
+variable
+    : IDENTIFICADOR
+    ;
+
+numero
+    : NUMERO
+    ;
+
+// TOKENS
+
+IDENTIFICADOR
+    : LETRA (LETRA | DIGITO | '_')*
+    ;
+
+OPADD : '+' | '-' ;
+
+OPMUL : '*' | '/' ;
+
+NUMERO
+    : DIGITO+
+    ;
+
+ LETRA
+    : [a-zA-Z]
+    ;
+
+ DIGITO
+    : [0-9]
+    ;
+
+WS
+    : [ \t\r\n]+ -> skip
+    ;

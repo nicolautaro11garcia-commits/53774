@@ -1,0 +1,11 @@
+escribir 5 + * 3     
+
+variar x desde 1 hasta 10 hacer
+    resultado <- x / 0     
+    escribir resultado
+fin_variar
+
+a <- (10 + 20     
+
+b <- 50
+escribir b + 

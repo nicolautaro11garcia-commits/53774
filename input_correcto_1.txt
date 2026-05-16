@@ -1,0 +1,17 @@
+variar i desde 1 hasta 5 hacer
+    escribir i
+fin_variar
+
+x <- 2 + 3
+escribir x
+
+y <- 10
+escribir y
+
+z <- x + y * 2
+escribir z
+
+variar j desde 1 hasta 4 con paso 1 hacer
+    temp <- j * 5
+    escribir temp
+fin_variar

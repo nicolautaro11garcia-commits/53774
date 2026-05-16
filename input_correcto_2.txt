@@ -1,0 +1,19 @@
+variar n desde 1 hasta 5 hacer
+    escribir n
+    
+    resultado <- n * n
+    escribir resultado
+fin_variar
+
+total <- 0
+variar k desde 1 hasta 10 con paso 2 hacer
+    total <- total + k
+fin_variar
+
+escribir total
+
+promedio <- (10 + 20 + 30 + 40) / 4
+escribir promedio
+
+x <- 100 - 25 * 2 + 10
+escribir x

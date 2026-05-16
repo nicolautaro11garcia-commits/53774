@@ -1,0 +1,11 @@
+variar i desde 1 hasta 10
+    escribir i
+fin_variar  
+
+x = 20 + 5    
+
+y <- 10 * 
+escribir y     
+
+variar j desde 5 hasta 1 con paso -1
+    escribir j
