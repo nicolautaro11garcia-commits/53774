@@ -49,27 +49,30 @@ function main() {
             console.log(`❌ Se encontraron ${parser._syntaxErrors} error(es) sintáctico(s)\n`);
         }
 
-        // 2. TABLA DE LEXEMAS - TOKENS
-        console.log("\n=== 2. TABLA DE LEXEMAS - TOKENS ===");
+        // 2. TABLA DE TOKENS Y LEXEMAS 
+        console.log("\nTabla de Tokens y Lexemas:");
         console.log("--------------------------------------------------");
         console.log("| Lexema" + " ".repeat(13) + "| Token" + " ".repeat(25) + "|");
         console.log("--------------------------------------------------");
 
         tokens.tokens.forEach(token => {
             if (token.channel === 0 && token.type !== antlr4.Token.EOF) {
-                const lexema = token.text;
-                let tokenType = "UNKNOWN";
-                if (parser.vocabulary && parser.vocabulary.getSymbolicName) {
-                    tokenType = parser.vocabulary.getSymbolicName(token.type) || token.type;
-                } else if (LenguajeLexer && LenguajeLexer.symbolicNames) {
-                    tokenType = LenguajeLexer.symbolicNames[token.type] || token.type;
+                const lexema = (token.text || "").padEnd(18);
+                
+                let tokenType = String(token.type); // valor por defecto
+
+                // Intentar obtener el nombre real del token
+                if (parser.vocabulary && typeof parser.vocabulary.getSymbolicName === 'function') {
+                    const name = parser.vocabulary.getSymbolicName(token.type);
+                    if (name) tokenType = name;
                 } else if (LenguajeParser && LenguajeParser.symbolicNames) {
-                    tokenType = LenguajeParser.symbolicNames[token.type] || token.type;
+                    const name = LenguajeParser.symbolicNames[token.type];
+                    if (name) tokenType = name;
                 }
-                console.log(`| ${lexema.padEnd(18)} | ${tokenType.padEnd(30)} |`);
+
+                console.log(`| ${lexema} | ${tokenType.padEnd(30)} |`);
             }
         });
-
         console.log("--------------------------------------------------");
         console.log("");
 
